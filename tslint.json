@@ -1,5 +1,17 @@
 {
-  "extends": [
-    "tslint-config-airbnb"
-  ]
+  "extends": ["tslint:recommended", "tslint-config-airbnb"],
+
+  "rules": {
+    // conflicts with other rule
+    "array-type": false,
+
+    // name imports more intelligently
+    "import-name": false,
+
+    // not using hungarian notation
+    "interface-name": false,
+
+    // sort logically not alphabetically
+    "object-literal-sort-keys": false
+  }
 }
