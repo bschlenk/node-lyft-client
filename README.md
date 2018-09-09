@@ -1,176 +1,74 @@
-[![Build Status](https://travis-ci.org/bschlenk/node-lyft-client.svg?branch=master)](https://travis-ci.org/bschlenk/node-lyft-client)
-[![npm version](https://badge.fury.io/js/node-lyft-client.svg)](https://badge.fury.io/js/node-lyft-client)
+[![npm][npm]][npm-url]
+[![travis][travis]][travis-url]
 
-# A Node Wrapper for the Lyft API
+# node-lyft-client
 
-## Introduction
-
-A simple node wrapper that serves as an abstraction for the Lyft API's public scope endpoints.
+A Lyft client for calling Lyft's public API endpoints. See [their API
+reference](https://developer.lyft.com/reference) for more information.
 
 ## Installation
 
-Install via NPM
-
-```
-npm install lyft-node
+```sh
+npm install lyft-client
 ```
 
 ## Usage
 
-### Get Ride Types
+Sign up for a lyft developer account
+[here](https://www.lyft.com/developers). You will get a `client id` and
+a `client secret`. You will need these to initialize a `Lyft` client
+object.
 
-Takes a ride types search query and returns a response wrapped in a Promise.
+```typescript
+// commonjs
+const { Lyft } = require('lyft-client');
 
-#### Ride Types Search Query
+// es2015
+import Lyft from 'lyft-client';
 
-##### Required:
+const CLIENT_ID = // your client id
+const CLIENT_SECRET = // your client secret
 
-- `start [coordinate]`
+const lyft = new Lyft(CLIENT_ID, CLIENT_SECRET);
 
-##### Optional:
+lyft.getRideTypes({
+  latitude: /* latitude coordinate */,
+  longitude: /* longitude coordinate */,
+}).then((response) => {
+  // do something with the response
+});
 
-- `rideType [string]` (must be `lyft`, `lyft_line`, or `lyft_plus`)
-
-#### Example
-
-```javascript
-import Lyft from "lyft-node";
-
-const lyft = new Lyft("LYFT_CLIENT_ID", "LYFT_CLIENT_SECRET");
-
-const query = {
-  start: {
-    latitude: 1,
-    longitude: 2
-  }
-};
-
-lyft
-  .getRideTypes(query)
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
 ```
 
-### Get Driver ETA
+I recommend using [dotenv](https://www.npmjs.com/package/dotenv) to load
+your private Lyft tokens.
 
-Takes a driver eta search query and returns a response wrapped in a Promise.
-
-#### Driver ETA Search Query
-
-##### Required:
-
-- `start [coordinate]`
-
-##### Optional:
-
-- `end [coordinate]`
-- `rideType [string]` (must be `lyft`, `lyft_line`, or `lyft_plus`)
-
-#### Example
-
-```javascript
-import Lyft from "lyft-node";
-
-const lyft = new Lyft("LYFT_CLIENT_ID", "LYFT_CLIENT_SECRET");
-
-const query = {
-  start: {
-    latitude: 1,
-    longitude: 2
-  }
-};
-
-lyft
-  .getDriverEta(query)
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+```sh
+npm install dotenv
 ```
 
-### Get Ride Estimates
+Create a file named `.env` in the root of your project:
 
-Takes a ride estimates search query and returns a response wrapped in a Promise.
-
-#### Ride Estimates Search Query
-
-##### Required:
-
-- `start [coordinate]`
-- `end [coordinate]`
-
-##### Optional:
-
-- `rideType [string]` (must be `lyft`, `lyft_line`, or `lyft_plus`)
-
-#### Example
-
-```javascript
-import Lyft from "lyft-node";
-
-const lyft = new Lyft("LYFT_CLIENT_ID", "LYFT_CLIENT_SECRET");
-
-const query = {
-  start: {
-    latitude: 1,
-    longitude: 2
-  },
-  end: {
-    latitude: 3,
-    longitude: 4
-  },
-  rideType: "lyft"
-};
-
-lyft
-  .getRideEstimates(query)
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+```
+LYFT_CLIENT_ID=MY_CLIENT_ID
+LYFT_CLIENT_SECRET=MY_CLIENT_SECRET
 ```
 
-### Get Nearby Drivers
+Then use `dotenv` to load your `.env` file into your environment:
 
-Takes a nearby drivers search query and returns a response wrapped in a Promise.
+```js
+require('dotenv').config();
+const { Lyft } = require('lyft-client');
 
-#### Time Estimates Search Query
-
-##### Required:
-
-- `start [coordinate]`
-
-#### Example
-
-```javascript
-import Lyft from "lyft-node";
-
-const lyft = new Lyft("LYFT_CLIENT_ID", "LYFT_CLIENT_SECRET");
-
-const query = {
-  start: {
-    latitude: 1,
-    longitude: 2
-  }
-};
-
-lyft
-  .getNearbyDrivers(query)
-  .then(result => {
-    console.log(result);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+const lyft = new Lyft(
+  process.env.LYFT_CLIENT_ID,
+  process.env.LYFT_CLIENT_SECRET,
+);
 ```
+
+See
+[bschlenk.github.io/node-lyft-client](http://bschlenk.github.io/node-lyft-client/docs/classes/_lyft_.lyft.html)
+for more documentation.
 
 ## License
 
@@ -179,3 +77,8 @@ lyft
 ## Credits
 
 Forked from [djchie/lyft-node](https://github.com/djchie/lyft-node).
+
+[npm]: https://img.shields.io/npm/v/lyft-client.svg?logo=npm
+[npm-url]: https://npmjs.com/package/lyft-client
+[travis]: https://img.shields.io/travis/bschlenk/node-lyft-client/master.svg?logo=travis
+[travis-url]: https://travis-ci.org/bschlenk/node-lyft-client
