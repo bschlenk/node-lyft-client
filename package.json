@@ -17,7 +17,7 @@
     "test": "npm run lint && npm run test:coverage",
     "build": "tsc",
     "typedoc": "typedoc --out ./docs --exclude '**/__tests__/*' --excludePrivate",
-    "prepublishOnly": "npm run lint-test && npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
