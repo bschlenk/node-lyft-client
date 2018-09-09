@@ -4,6 +4,9 @@
   "description": "This is a Node.js Wrapper for the Lyft API's public scope endpoints",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "lint": "tslint -p .",
     "lint:fix": "npm run lint -- --fix",
