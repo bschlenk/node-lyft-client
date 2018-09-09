@@ -12,6 +12,9 @@
     "interface-name": false,
 
     // sort logically not alphabetically
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+
+    // no way to control this with prettier,
+    "ter-arrow-parens": [true, "always"]
   }
 }
