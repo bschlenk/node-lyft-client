@@ -1,9 +1,12 @@
+import * as dotenv from 'dotenv';
 import Lyft from '..';
 import { DriverEtaInput } from '../endpoints/DriverEta';
 import { NearbyDriversInput } from '../endpoints/NearbyDrivers';
 import { RideEstimatesInput } from '../endpoints/RideEstimates';
 import { RideTypesInput } from '../endpoints/RideTypes';
 import { RideType } from '../interfaces/RideType';
+
+dotenv.config();
 
 /* tslint:disable:no-console */
 
@@ -56,26 +59,76 @@ describe('Test Lyft API Node Wrapper', () => {
   };
 
   it('tests ride types fetch', () => {
-    return lyft
-      .getRideTypes(rideTypesInput)
-      .then(response => console.log(response));
+    return lyft.getRideTypes(rideTypesInput).then((response) => {
+      expect(response).toBeInstanceOf(Array);
+      expect(Object.keys(response[0])).toEqual(
+        expect.arrayContaining([
+          'categoryKey',
+          'displayName',
+          'imageUrl',
+          'pricingDetails',
+          'rideType',
+          'seats',
+        ]),
+      );
+      expect(Object.keys(response[0].pricingDetails)).toEqual(
+        expect.arrayContaining([
+          'baseCharge',
+          'cancelPenaltyAmount',
+          'costMinimum',
+          'costPerMile',
+          'costPerMinute',
+          'currency',
+          'serviceFeeDescription',
+          'trustAndService',
+        ]),
+      );
+    });
   });
 
   it('tests driver eta fetch', () => {
-    return lyft
-      .getDriverEta(driverEtaInput)
-      .then(response => console.log(response));
+    return lyft.getDriverEta(driverEtaInput).then((response) => {
+      expect(response).toBeInstanceOf(Array);
+      expect(Object.keys(response[0])).toEqual(
+        expect.arrayContaining([
+          'displayName',
+          'etaSeconds',
+          'isValidEstimate',
+          'rideType',
+        ]),
+      );
+    });
   });
 
   it('tests ride estimates fetch', () => {
-    return lyft
-      .getRideEstimates(rideEstimatesInput)
-      .then(response => console.log(response));
+    return lyft.getRideEstimates(rideEstimatesInput).then((response) => {
+      expect(response).toBeInstanceOf(Array);
+      expect(Object.keys(response[0])).toEqual(
+        expect.arrayContaining([
+          'canRequestRide',
+          'costToken',
+          'currency',
+          'displayName',
+          'estimatedCostCentsMax',
+          'estimatedCostCentsMin',
+          'estimatedDistanceMiles',
+          'estimatedDurationSeconds',
+          'isValidEstimate',
+          'priceQuoteId',
+          'primetimeConfirmationToken',
+          'primetimePercentage',
+          'rideType',
+        ]),
+      );
+    });
   });
 
   it('tests nearby drivers fetch', () => {
-    return lyft
-      .getNearbyDrivers(nearbyDriversInput)
-      .then(response => console.log(response));
+    return lyft.getNearbyDrivers(nearbyDriversInput).then((response) => {
+      expect(response).toBeInstanceOf(Array);
+      expect(Object.keys(response[0])).toEqual(
+        expect.arrayContaining(['drivers', 'rideType']),
+      );
+    });
   });
 });
