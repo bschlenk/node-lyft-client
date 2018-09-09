@@ -70,7 +70,47 @@
 				<p>A Lyft client for calling Lyft&#39;s public API endpoints. See <a href="https://developer.lyft.com/reference">their API
 				reference</a> for more information.</p>
 				<h2 id="installation">Installation</h2>
-				<pre><code>npm <span class="hljs-keyword">install</span> lyft-<span class="hljs-keyword">client</span></code></pre><h2 id="license">License</h2>
+				<pre><code class="language-sh">npm install lyft-client</code></pre>
+				<h2 id="usage">Usage</h2>
+				<p>Sign up for a lyft developer account
+					<a href="https://www.lyft.com/developers">here</a>. You will get a <code>client id</code> and
+					a <code>client secret</code>. You will need these to initialize a <code>Lyft</code> client
+				object.</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// commonjs</span>
+<span class="hljs-keyword">const</span> { Lyft } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lyft-client'</span>);
+
+<span class="hljs-comment">// es2015</span>
+<span class="hljs-keyword">import</span> Lyft <span class="hljs-keyword">from</span> <span class="hljs-string">'lyft-client'</span>;
+
+<span class="hljs-keyword">const</span> CLIENT_ID = <span class="hljs-comment">// your client id</span>
+<span class="hljs-keyword">const</span> CLIENT_SECRET = <span class="hljs-comment">// your client secret</span>
+
+<span class="hljs-keyword">const</span> lyft = <span class="hljs-keyword">new</span> Lyft(CLIENT_ID, CLIENT_SECRET);
+
+lyft.getRideTypes({
+  latitude: <span class="hljs-comment">/* latitude coordinate */</span>,
+  longitude: <span class="hljs-comment">/* longitude coordinate */</span>,
+}).then(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+  <span class="hljs-comment">// do something with the response</span>
+});
+</code></pre>
+				<p>I recommend using <a href="https://www.npmjs.com/package/dotenv">dotenv</a> to load
+				your private Lyft tokens.</p>
+				<pre><code class="language-sh">npm install dotenv</code></pre>
+				<p>Create a file named <code>.env</code> in the root of your project:</p>
+				<pre><code><span class="hljs-attr">LYFT_CLIENT_ID</span>=MY_CLIENT_ID
+<span class="hljs-attr">LYFT_CLIENT_SECRET</span>=MY_CLIENT_SECRET</code></pre><p>Then use <code>dotenv</code> to load your <code>.env</code> file into your environment:</p>
+				<pre><code class="language-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv'</span>).config();
+<span class="hljs-keyword">const</span> { Lyft } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lyft-client'</span>);
+
+<span class="hljs-keyword">const</span> lyft = <span class="hljs-keyword">new</span> Lyft(
+  process.env.LYFT_CLIENT_ID,
+  process.env.LYFT_CLIENT_SECRET,
+);</code></pre>
+				<p>See
+					<a href="http://bschlenk.github.io/node-lyft-client/docs/classes/_lyft_.lyft.html">bschlenk.github.io/node-lyft-client</a>
+				for more documentation.</p>
+				<h2 id="license">License</h2>
 				<p><a href="LICENSE.md">MIT</a></p>
 				<h2 id="credits">Credits</h2>
 				<p>Forked from <a href="https://github.com/djchie/lyft-node">djchie/lyft-node</a>.</p>
