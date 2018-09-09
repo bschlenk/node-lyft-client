@@ -6,10 +6,10 @@
   "scripts": {
     "lint": "tslint -p .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "NODE_ENV=development jest",
-    "test:coverage": "npm run test -- --coverage",
+    "test:unit": "NODE_ENV=development jest",
+    "test:coverage": "npm run test:unit -- --coverage",
     "test:watch": "npm run test:coverage -- --watch",
-    "lint-test": "npm run lint && npm run test:coverage",
+    "test": "npm run lint && npm run test:coverage",
     "build": "tsc",
     "prepublishOnly": "npm run lint-test && npm run build"
   },
