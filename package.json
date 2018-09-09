@@ -29,8 +29,6 @@
   "homepage": "https://github.com/bschlenk/node-lyft-client#readme",
   "dependencies": {
     "camelcase-keys": "^4.2.0",
-    "enumify": "1.0.4",
-    "immutable": "3.8.2",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   },
