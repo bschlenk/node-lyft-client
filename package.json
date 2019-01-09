@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/bschlenk/node-lyft-client#readme",
   "dependencies": {
-    "camelcase-keys": "^4.2.0",
+    "camelcase-keys": "^5.0.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   },
