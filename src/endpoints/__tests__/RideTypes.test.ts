@@ -1,4 +1,3 @@
-import { RideType } from '../../interfaces/RideType';
 import { rideTypes, RideTypesInput } from '../RideTypes';
 
 describe('RideTypes', () => {
