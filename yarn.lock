@@ -306,9 +306,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/camelcase-keys@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/camelcase-keys/-/camelcase-keys-4.0.0.tgz#528da23e7bd41068ee25e3ba52a96a4d0d263ed5"
+"@types/camelcase-keys@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/camelcase-keys/-/camelcase-keys-5.1.1.tgz#98b0401e7e759fee9ccf2ee1a32a26dc33b87e01"
+  dependencies:
+    camelcase-keys "*"
 
 "@types/caseless@*":
   version "0.12.1"
@@ -701,11 +703,11 @@ callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
 
-camelcase-keys@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-5.0.0.tgz#67250d1d2e6617ed0568463e56fa337845706695"
+camelcase-keys@*, camelcase-keys@^5.0.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-5.2.0.tgz#6a66cff764f83766a6a609707aab105fd10415e3"
   dependencies:
-    camelcase "^5.0.0"
+    camelcase "^5.3.1"
     map-obj "^3.0.0"
     quick-lru "^1.0.0"
 
@@ -716,6 +718,10 @@ camelcase@^4.1.0:
 camelcase@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
+
+camelcase@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
 
 capture-exit@^2.0.0:
   version "2.0.0"

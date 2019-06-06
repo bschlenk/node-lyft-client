@@ -39,7 +39,7 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "@types/camelcase-keys": "^4.0.0",
+    "@types/camelcase-keys": "^5.1.1",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",
     "@types/request-promise-native": "^1.0.15",
