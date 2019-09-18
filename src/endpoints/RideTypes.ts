@@ -1,6 +1,6 @@
-import camelcaseKeys = require('camelcase-keys');
 import { Coordinate } from '../interfaces/Coordinate';
 import { RideType } from '../interfaces/RideType';
+import { camelcaseKeys } from '../utils';
 import { Endpoint } from './Endpoint';
 
 export type RideTypesInput = Coordinate;
@@ -36,6 +36,6 @@ export const rideTypes: Endpoint<RideTypesInput, RideTypesOutput[]> = {
 
   convertOutput(output) {
     const rides = output.ride_types;
-    return camelcaseKeys(rides, { deep: true });
+    return camelcaseKeys(rides);
   },
 };

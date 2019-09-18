@@ -1,6 +1,6 @@
-import camelcaseKeys = require('camelcase-keys');
 import { Coordinate } from '../interfaces/Coordinate';
 import { RideType } from '../interfaces/RideType';
+import { camelcaseKeys } from '../utils';
 import { Endpoint } from './Endpoint';
 
 export type NearbyDriversInput = Coordinate;
@@ -31,6 +31,6 @@ export const nearbyDrivers: Endpoint<
 
   convertOutput(output) {
     const drivers = output.nearby_drivers;
-    return camelcaseKeys(drivers, { deep: true });
+    return camelcaseKeys(drivers);
   },
 };

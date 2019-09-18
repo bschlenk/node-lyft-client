@@ -1,6 +1,6 @@
-import camelcaseKeys = require('camelcase-keys');
 import { Coordinate } from '../interfaces/Coordinate';
 import { RideType } from '../interfaces/RideType';
+import { camelcaseKeys } from '../utils';
 import { Endpoint } from './Endpoint';
 
 export interface DriverEtaInput extends Coordinate {
@@ -28,6 +28,6 @@ export const driverEta: Endpoint<DriverEtaInput, DriverEtaOutput[]> = {
 
   convertOutput(output) {
     const estimates = output.eta_estimates;
-    return camelcaseKeys(estimates, { deep: true });
+    return camelcaseKeys(estimates);
   },
 };
