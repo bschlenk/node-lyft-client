@@ -31,32 +31,17 @@ describe('Test Lyft API Node Wrapper', () => {
     longitude: endLng,
   };
 
-  const rideTypesInput: RideTypesInput = {
-    latitude: startLat,
-    longitude: startLng,
-  };
+  const rideTypesInput: RideTypesInput = start;
 
-  const driverEtaInput: DriverEtaInput = {
-    latitude: startLat,
-    longitude: startLng,
-  };
+  const driverEtaInput: DriverEtaInput = start;
 
   const rideEstimatesInput: RideEstimatesInput = {
-    start: {
-      latitude: startLat,
-      longitude: startLng,
-    },
-    end: {
-      latitude: endLat,
-      longitude: endLng,
-    },
+    start,
+    end,
     rideType: RideType.LYFT_PLUS,
   };
 
-  const nearbyDriversInput: NearbyDriversInput = {
-    latitude: startLat,
-    longitude: startLng,
-  };
+  const nearbyDriversInput: NearbyDriversInput = start;
 
   it('tests ride types fetch', () => {
     return lyft.getRideTypes(rideTypesInput).then((response) => {
