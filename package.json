@@ -1,6 +1,6 @@
 {
   "name": "lyft-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a Node.js Wrapper for the Lyft API's public scope endpoints",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
