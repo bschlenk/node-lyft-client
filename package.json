@@ -34,23 +34,23 @@
   },
   "homepage": "https://github.com/bschlenk/node-lyft-client#readme",
   "dependencies": {
-    "camelcase-keys": "^6.0.1",
+    "camelcase-keys": "^6.1.1",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.7"
+    "request-promise-native": "^1.0.8"
   },
   "devDependencies": {
     "@types/camelcase-keys": "^5.1.1",
-    "@types/dotenv": "^6.1.1",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.5",
-    "@types/request-promise-native": "^1.0.16",
-    "dotenv": "^8.1.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.5",
+    "@types/request-promise-native": "^1.0.17",
+    "dotenv": "^8.2.0",
     "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
-    "tslint-config-airbnb": "^5.11.1",
-    "typedoc": "^0.15.0",
-    "typescript": "^3.6.3"
+    "ts-jest": "^24.3.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typedoc": "^0.15.6",
+    "typescript": "^3.7.4"
   },
   "directories": {
     "lib": "dist"
