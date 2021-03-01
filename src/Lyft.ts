@@ -1,11 +1,18 @@
-import * as request from 'request-promise-native';
-
+import axios from 'axios';
 import { driverEta, DriverEtaInput } from './endpoints/DriverEta';
 import { Endpoint } from './endpoints/Endpoint';
 import { nearbyDrivers, NearbyDriversInput } from './endpoints/NearbyDrivers';
 import { rideEstimates, RideEstimatesInput } from './endpoints/RideEstimates';
 import { rideTypes, RideTypesInput } from './endpoints/RideTypes';
 import { AuthResponse } from './interfaces/AuthResponse';
+
+const client = axios.create({
+  baseURL: 'https://api.lyft.com/v1/',
+  timeout: 1000,
+  headers: {
+    'content-type': 'application/json',
+  },
+});
 
 export class Lyft {
   private tokenType: string;
@@ -41,28 +48,35 @@ export class Lyft {
     endpoint: Endpoint<Input, Output>,
     input: Input,
   ): Promise<Output> {
+    if (this.requiresTokenRefresh()) {
+      await this.getAccessToken();
+    }
+
     const params = endpoint.convertInput(input);
-    const options = await this.buildOptions(endpoint.name, params);
-    const output = await request(options);
+
+    const output = await client({
+      url: endpoint.name,
+      method: 'POST',
+      params,
+      headers: {
+        authorization: `${this.tokenType} ${this.accessToken}`,
+      },
+    });
+
     return endpoint.convertOutput(output);
   }
 
   private getAccessToken() {
-    return request({
-      uri: 'https://api.lyft.com/oauth/token',
+    return client({
+      url: 'https://api.lyft.com/oauth/token',
       method: 'POST',
       auth: {
         username: this.clientId,
         password: this.clientSecret,
       },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: {
+      data: {
         grant_type: 'client_credentials',
       },
-      json: true,
-      timeout: 5000,
     }).then((result: AuthResponse) => {
       this.tokenType = result.token_type;
       this.accessToken = result.access_token;
@@ -81,24 +95,5 @@ export class Lyft {
       !this.expirationDate ||
       nowDate > this.expirationDate
     );
-  }
-
-  private async buildOptions(
-    subpath: string,
-    parameters: any,
-  ): Promise<request.OptionsWithUri> {
-    if (this.requiresTokenRefresh()) {
-      await this.getAccessToken();
-    }
-
-    return {
-      uri: `https://api.lyft.com/v1/${subpath}`,
-      qs: parameters,
-      headers: {
-        Authorization: `${this.tokenType} ${this.accessToken}`,
-      },
-      json: true,
-      timeout: 10000,
-    };
   }
 }
