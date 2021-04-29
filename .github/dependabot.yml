@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "13:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.17
+    - 14.14.22
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.19
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: typescript
+    versions:
+    - 3.9.7
